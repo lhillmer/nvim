@@ -32,19 +32,19 @@ vim.api.nvim_create_autocmd("QuitPre", {
         local transient_wins = {}
         local bufnames = {}
         local wins = vim.api.nvim_list_wins()
+        local local_grug = require('grug-far')
         for _, w in ipairs(wins) do
-            local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(w))
+            local bufid = vim.api.nvim_win_get_buf(w)
+            local bufname = vim.api.nvim_buf_get_name(bufid)
             table.insert(bufnames, bufname)
             if (
+                local_grug.is_instance_open(bufid) or
                 bufname:match("neo%-tree") ~= nil or
                 !vim.api.nvim_win_get_config(w).focusable
             )then
                 table.insert(transient_wins, w)
             end
         end
-        print(vim.inspect(transient_wins))
-        print(vim.inspect(wins))
-        print(vim.inspect(bufnames))
         if #transient_wins == #wins - 1 then
             for _, w in ipairs(transient_wins) do
                 vim.api.nvim_win_close(w, true)

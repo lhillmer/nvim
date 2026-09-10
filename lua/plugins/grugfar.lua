@@ -1,6 +1,8 @@
 
 vim.pack.add { 'https://github.com/MagicDuck/grug-far.nvim' }
-require('grug-far').setup({
+local local_grug = require('grug-far')
+
+local_grug.setup({
     windowCreationCommand = [[
         let s:neotree_win = -1
         for w in range(1, winnr('$'))
@@ -35,10 +37,9 @@ vim.keymap.set(
     'n',
     '<leader>ff',
     function()
-        require('grug-far').open({
+        local_grug.open({
             prefills = { search = vim.fn.expand("<cword>") },
             transient = true,
-            instanceName = "gfar",
         })
     end,
     { desc = '[F]ind current word [f]' }
@@ -48,18 +49,17 @@ vim.keymap.set(
     'n',
     '<leader>fl',
     function()
-        local entry = require('grug-far').get_last_history_entry()
-        opts = {
+        local opts = {
             prefills = { search = vim.fn.expand("<cword>") },
             transient = true,
-            instanceName = "gfar",
         }
+        local entry = require('grug-far').get_last_history_entry()
         if entry ~= nil then
             opts.prefills = entry
             opts.engine = entry.engine
             opts.replacementInterpreter = entry.replacementInterpreter
         end
-        require('grug-far').open(opts)
+        local_grug.open(opts)
     end,
     { desc = 'Open [l]ast search' }
 )

@@ -25,6 +25,7 @@ vim.keymap.set('n', '<leader>fF', builtin.find_files, { desc = '[F]ind [F]iles' 
 vim.keymap.set('n', '<C-p>', builtin.find_files)
 vim.keymap.set({ 'n', 'v' }, '<leader>fc', builtin.grep_string, { desc = '[F]ind [c]urrent word' })
 -- vim.keymap.set('n', '<leader>ff', builtin.live_grep, { desc = '[F]ind by grep [d]' })
+vim.keymap.set('n', '<leader>fb', builtin.buffers , { desc = '[F]ind [b]uffers' })
 vim.keymap.set('n', '<leader>fi', builtin.diagnostics, { desc = '[F]ind d[i]agnostics' })
 vim.keymap.set('n', '<leader>f.', builtin.resume, { desc = '[F]ind [R]esume' })
 vim.keymap.set('n', '<leader>fC', builtin.commands, { desc = '[F]ind [C]ommands' })

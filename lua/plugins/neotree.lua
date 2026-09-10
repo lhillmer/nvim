@@ -29,16 +29,24 @@ vim.api.nvim_create_autocmd("VimEnter", {
 
 vim.api.nvim_create_autocmd("QuitPre", {
     callback = function()
-        local invalid_win = {}
+        local transient_wins = {}
+        local bufnames = {}
         local wins = vim.api.nvim_list_wins()
         for _, w in ipairs(wins) do
             local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(w))
-            if bufname:match("neo%-tree") ~= nil then
-                table.insert(invalid_win, w)
+            table.insert(bufnames, bufname)
+            if (
+                bufname:match("neo%-tree") ~= nil or
+                !vim.api.nvim_win_get_config(w).focusable
+            )then
+                table.insert(transient_wins, w)
             end
         end
-        if #invalid_win == #wins - 1 then
-            for _, w in ipairs(invalid_win) do
+        print(vim.inspect(transient_wins))
+        print(vim.inspect(wins))
+        print(vim.inspect(bufnames))
+        if #transient_wins == #wins - 1 then
+            for _, w in ipairs(transient_wins) do
                 vim.api.nvim_win_close(w, true)
             end
         end

@@ -126,7 +126,7 @@ end
 require("plugins.gitsigns")
 
 require("plugins.whichkey")
-require("plugins.tokyonight")
+require("plugins.colorscheme")
 require("plugins.todocomments")
 require("plugins.mini")
 

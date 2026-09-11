@@ -7,5 +7,18 @@ require('tokyonight').setup {
         comments = { italic = false }, -- Disable italics in comments
     },
 }
-vim.cmd.colorscheme 'tokyonight-night'
+
+vim.pack.add({
+  { src = "https://github.com/bluz71/vim-moonfly-colors", name = "moonfly" },
+})
+
+
+vim.pack.add({
+  { src = "https://github.com/nuvic/flexoki-nvim", name = "flexoki" },
+})
+
+
+-- vim.cmd.colorscheme 'tokyonight-night'
+-- vim.cmd.colorscheme 'moonfly'
+vim.cmd.colorscheme 'flexoki'
 

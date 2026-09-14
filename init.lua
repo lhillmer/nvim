@@ -29,7 +29,7 @@ vim.o.wrap = false
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.o.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣', space = '·' }
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣', space = '·', lead = '·' }
 
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
